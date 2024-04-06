@@ -11,7 +11,8 @@ f_Q_next <= s_floor2 when (i_up_down and o_floor(0) and not o_floor(1)) else
             s_floor1 when (not i_up_down and o_floor(1) and not o_floor(0)) else
             s_floor1 ;
 
-If possible, can I meet with you on Monday to figure this out.
+I can see you are busy on Monday, so I will try to find someone in the department available to help me figure this out.
+
 VHDL for ECE 281 [ICE 5](https://usafa-ece.github.io/ece281-book/ICE/ICE5.html)
 
 Targeted toward Digilent Basys3. Make sure to install the [board files](https://github.com/Xilinx/XilinxBoardStore/tree/2018.2/boards/Digilent/basys3).
