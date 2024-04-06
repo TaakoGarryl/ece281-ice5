@@ -80,7 +80,7 @@ entity elevator_controller_fsm is
 end elevator_controller_fsm;
 
 
--- Write the code in a similar style as the Lesson 19 ICE (stoplight FSM version 2)
+-- Write the code in a similar style as the Lesson 19 ICE (stoplight FSM version 2)s
 architecture Behavioral of elevator_controller_fsm is
 
     -- Below you create a new variable type! You also define what values that 
@@ -105,26 +105,30 @@ begin
  --  s_floor2 when ((i_up_down and not o_floor(1) and o_floor(0)) 
  --  or (not i_up_down and o_floor(1) and not o_floor(0))) else
  --  s_floor1;
+
  
- f_Q_next <= s_floor2 when (i_up_down and o_floor(0) and not o_floor(1)) else
-             s_floor3 when (i_up_down and o_floor(1) and not o_floor(0)) else
-            s_floor4 when (i_up_down and o_floor(1) and o_floor(0)) else
-            s_floor4 when (i_up_down and o_floor(2)) else
-            s_floor3 when (not i_up_down and o_floor(2)) else -- going down
-            s_floor2 when (not i_up_down and o_floor(1) and o_floor(0)) else
-            s_floor1 when (not i_up_down and o_floor(1) and not o_floor(0)) else
-            s_floor1 ;-- default case
+     -- Next State Logic
+ 
+ 
+-- f_Q_next <= s_floor2 when (i_up_down and o_floor(0) and not o_floor(1)) else
+ --            s_floor3 when (i_up_down and o_floor(1) and not o_floor(0)) else
+   --         s_floor4 when (i_up_down and o_floor(1) and o_floor(0)) else
+    --        s_floor4 when (i_up_down and o_floor(2)) else
+      --      s_floor3 when (not i_up_down and o_floor(2)) else -- going down
+        --    s_floor2 when (not i_up_down and o_floor(1) and o_floor(0)) else
+          --  s_floor1 when (not i_up_down and o_floor(1) and not o_floor(0)) else
+           -- s_floor1 ;-- default case
                  
                  
   
 	-- Output logic
     
-    with f_Q select
-        o_floor <= "0001" when s_floor1,
-                   "0010" when s_floor2,
-                   "0011" when s_floor3,
-                   "0100" when s_floor4,
-                   "0001" when others; -- default is floor 1
+  --  with f_Q select
+    --    o_floor <= "0001" when s_floor1,
+      --             "0010" when s_floor2,
+        --           "0011" when s_floor3,
+          --         "0100" when s_floor4,
+            --       "0001" when others; -- default is floor 1
 
 	
 	-------------------------------------------------------------------------------------------------------
@@ -135,33 +139,33 @@ begin
 	   
 	-- i_stop goes here
 	
-	f_Q_next <= f_Q when i_stop;-- and  o_floor(2) else
-	          -- s_floor3 when i_stop and o_floor(1) and o_floor(0) else
-	         --  s_floor2 when i_stop and o_floor(1) and not o_floor(0)else
-	         --  s_floor1;
+--	f_Q_next <= s_floor4 when  o_floor(2) else --f_Q when i_stop;
+	--          s_floor3 when i_stop and o_floor(1) and o_floor(0) else
+	  --         s_floor2 when i_stop and o_floor(1) and not o_floor(0)else
+	    --       s_floor1;
 	
-	register_proc : process (i_clk, i_reset)
-    begin
+--	register_proc : process (i_clk, i_reset)
+  --  begin
          -- synchronous reset
-        if i_reset ='1' then
-                 f_Q  <= s_floor3;
-                 elsif f_Q = s_floor3 then
-                 f_Q <= s_floor2;
-                 elsif f_Q = s_floor1 then
-                 f_Q <= s_floor1;
-                 else
-                 f_Q <= s_floor2;
-                  end if; -- when o_floor(0) and not o_floor(1)else
+    --    if i_reset ='1' then
+      --           f_Q  <= s_floor3;
+        --         elsif f_Q = s_floor3 then
+          --       f_Q <= s_floor2;
+            --     elsif f_Q = s_floor1 then
+              --   f_Q <= s_floor1;
+                -- else
+ --                f_Q <= s_floor2;
+   --               end if; -- when o_floor(0) and not o_floor(1)else
                            -- s_floor2 when  o_floor(1) and not o_floor(0) else
                             --s_floor2 when  o_floor(1) and o_floor(0) else   --set to off
-       if (rising_edge(i_clk)) then
-                     f_Q <= f_Q_next;
-                 end if;
+   --    if (rising_edge(i_clk)) then
+     --                f_Q <= f_Q_next;
+       --          end if;
                  
         -- if elevator is enabled, advance floors
         -- if not enabled, stay at current floor
     
-	end process register_proc;	
+--	end process register_proc;	
 	
 	-------------------------------------------------------------------------------------------------------
 	
@@ -169,5 +173,5 @@ begin
 
 
 
-end Behavioral;
+--end Behavioral;
 

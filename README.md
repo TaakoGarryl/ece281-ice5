@@ -11,7 +11,7 @@ f_Q_next <= s_floor2 when (i_up_down and o_floor(0) and not o_floor(1)) else
             s_floor1 when (not i_up_down and o_floor(1) and not o_floor(0)) else
             s_floor1 ;
 
-I can see you are busy on Monday, so I will try to find someone in the department available to help me figure this out.
+I can only guess the issue arises from me not utilizing f_Q properly.
 
 VHDL for ECE 281 [ICE 5](https://usafa-ece.github.io/ece281-book/ICE/ICE5.html)
 
